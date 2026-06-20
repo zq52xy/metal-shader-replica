@@ -264,6 +264,47 @@ Prepared the repo for a hosted GitHub Pages demo at `https://zq52xy.github.io/me
 
 Context7 documentation lookup for Vite was blocked by monthly quota, so deployment details were checked against official Vite and GitHub Pages documentation by web fallback. GitHub Pages was enabled with `gh api --method POST repos/zq52xy/metal-shader-replica/pages -f build_type=workflow` after the workflow token could not create the Pages site.
 
+## Bilingual README And GIF Pass - 2026-06-20
+
+## Summary
+
+Updated the GitHub README to include English and Chinese documentation plus an animated GIF demo generated from real app states.
+
+## Changes
+
+- `README.md`: replaced the single-language README with English and Chinese sections.
+- `README.md`: added `docs/demo.gif` preview media near the top of both language sections.
+- `docs/demo.gif`: added a four-frame animated demo captured from the local app.
+- `docs/CLAUDE.md`: documented public README media ownership.
+- `CLAUDE.md`: added the `docs/` project map entry and README media quality gate.
+
+## Checks Run
+
+1. Playwright MCP demo frame capture
+   - Result: pass.
+   - URL: `http://127.0.0.1:5173/`.
+   - Captured states: `Blue Apple`, `Liquid Chrome`, `Prism Edge`, `Cosmic Glass`.
+   - Each captured state had `4` canvases and source label `apple-logo-trimmed.png`.
+2. GIF validation
+   - Result: pass.
+   - Output: `docs/demo.gif`.
+   - Dimensions: `960x675`.
+   - Frames: `4`.
+   - Size: `533989` bytes.
+3. README path checks
+   - Result: pass.
+   - Existing paths: `docs/demo.gif`, `docs/CLAUDE.md`, `NOTICE.md`, `.github/workflows/deploy.yml`.
+4. `npm run build`
+   - Result: pass.
+   - Output bundle: `dist/assets/index-DsgoFGSz.js`, `206.20 kB`, gzip `63.21 kB`.
+5. Browser console check
+   - Result: pass.
+   - Console warnings/errors: `0`.
+
+## Notes
+
+PowerShell displayed Chinese text as mojibake in terminal output, but UTF-8 codepoint inspection confirmed the README file stores the Chinese section correctly.
+
 ## Liquid Label Pass - 2026-06-20
 
 ## Summary
