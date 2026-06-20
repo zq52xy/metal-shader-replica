@@ -9,8 +9,10 @@ import gradientConfig from "./originalShaders/LogoGradient.js";
 import spectrumConfig from "./originalShaders/LogoSpectrum.js";
 import type { ModeSpec, UniformEntry, UniformMap } from "./types";
 
-export const DEFAULT_SOURCE = "/reference/apple-logo-trimmed.png";
-export const DEFAULT_BG = "/reference/cosmic-bg.png";
+const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
+export const DEFAULT_SOURCE = publicAsset("reference/apple-logo-trimmed.png");
+export const DEFAULT_BG = publicAsset("reference/cosmic-bg.png");
 
 const num = (value: number): UniformEntry => ({ type: "number", value });
 const bool = (value: boolean): UniformEntry => ({ type: "boolean", value });
@@ -24,7 +26,7 @@ export const MODE_SPECS: ModeSpec[] = [
     id: "gradient",
     label: "Logo Gradient",
     shortLabel: "Gradient",
-    fallbackImage: "/reference/target-mode-1.png",
+    fallbackImage: publicAsset("reference/target-mode-1.png"),
     config: gradientConfig,
     uniforms: {
       u_angle: num(20),
@@ -49,7 +51,7 @@ export const MODE_SPECS: ModeSpec[] = [
     id: "glass",
     label: "Logo Liquid",
     shortLabel: "Liquid",
-    fallbackImage: "/reference/target-mode-2.png",
+    fallbackImage: publicAsset("reference/target-mode-2.png"),
     config: glassConfig,
     uniforms: {
       u_ambient: num(0),
@@ -88,7 +90,7 @@ export const MODE_SPECS: ModeSpec[] = [
     id: "spectrum",
     label: "Logo Spectrum",
     shortLabel: "Spectrum",
-    fallbackImage: "/reference/target-mode-3.png",
+    fallbackImage: publicAsset("reference/target-mode-3.png"),
     config: spectrumConfig,
     uniforms: {
       u_ambient: num(0),
@@ -121,7 +123,7 @@ export const MODE_SPECS: ModeSpec[] = [
     id: "crystal",
     label: "Logo Crystal",
     shortLabel: "Crystal",
-    fallbackImage: "/reference/target-mode-4.png",
+    fallbackImage: publicAsset("reference/target-mode-4.png"),
     config: crystalConfig,
     uniforms: {
       u_bgAngle: num(0),

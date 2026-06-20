@@ -10,11 +10,13 @@
   "bugs": {
     "url": "https://github.com/zq52xy/metal-shader-replica/issues"
   },
-  "homepage": "https://github.com/zq52xy/metal-shader-replica#readme",
+  "homepage": "https://zq52xy.github.io/metal-shader-replica/",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "build:pages": "tsc && vite build --base=/metal-shader-replica/",
+    "preview": "vite preview --host 127.0.0.1",
+    "preview:pages": "vite preview --host 127.0.0.1 --base=/metal-shader-replica/"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",

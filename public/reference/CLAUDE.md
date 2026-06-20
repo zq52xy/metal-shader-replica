@@ -2,7 +2,7 @@
 
 ## Responsibility
 
-`public/reference/` owns static shader assets served at `/reference/...`.
+`public/reference/` owns static shader assets served under the active Vite public base, for example `/reference/...` locally and `/metal-shader-replica/reference/...` on GitHub Pages.
 
 ## Members
 

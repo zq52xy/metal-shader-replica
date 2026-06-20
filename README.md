@@ -42,6 +42,24 @@ npm run build
 npm run preview
 ```
 
+The GitHub Pages build uses the repository subpath:
+
+```bash
+npm run build:pages
+```
+
+Preview that build locally with the same subpath:
+
+```bash
+npm run preview:pages
+```
+
+Live demo:
+
+```text
+https://zq52xy.github.io/metal-shader-replica/
+```
+
 ## Project Structure
 
 ```text

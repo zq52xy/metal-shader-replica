@@ -195,6 +195,54 @@ Improved the parameter panel so it can collapse and so long control lists scroll
 
 The Browser plugin path was not available in the active tool set, so validation used the regular Playwright fallback with installed system Chrome.
 
+## GitHub Pages Deployment Pass - 2026-06-20
+
+## Summary
+
+Prepared the repo for a hosted GitHub Pages demo at `https://zq52xy.github.io/metal-shader-replica/`.
+
+## Changes
+
+- `.github/workflows/deploy.yml`: builds `dist/` and deploys it with GitHub Pages Actions.
+- `package.json`: added `build:pages` and `preview:pages` scripts.
+- `vite.config.ts`: documented Vite build/deploy ownership.
+- `src/shaderPresets.ts`: changed public asset URLs to follow `import.meta.env.BASE_URL`.
+- `README.md`: documented the live demo URL and Pages build commands.
+- `CLAUDE.md`, `.github/CLAUDE.md`, `.github/workflows/CLAUDE.md`, `public/reference/CLAUDE.md`: updated module maps.
+
+## Checks Run
+
+1. `npm run build`
+   - Result: pass.
+   - Output bundle: `dist/assets/index-DsgoFGSz.js`, `206.20 kB`, gzip `63.21 kB`.
+2. `npm run build:pages`
+   - Result: pass.
+   - Output bundle: `dist/assets/index-RaQCJ7aU.js`, `206.22 kB`, gzip `63.22 kB`.
+   - Output CSS: `dist/assets/index-BU6YAKnt.css`, `5.99 kB`, gzip `1.74 kB`.
+   - HTML asset base: `/metal-shader-replica/`.
+3. Pages-path static asset checks at `http://127.0.0.1:4174/metal-shader-replica/`
+   - Result: pass.
+   - HTML status: `200`.
+   - JS asset: `200`, `206224` bytes.
+   - CSS asset: `200`, `5992` bytes.
+   - Apple PNG asset: `200`, `10421` bytes.
+4. Playwright MCP rendered validation
+   - Result: pass.
+   - Desktop canvas count: `4`.
+   - Demo buttons visible: `Blue Apple`, `Liquid Chrome`, `Prism Edge`, `Cosmic Glass`.
+   - `Liquid Chrome` click updates heading to `Logo Liquid`.
+   - Console errors/warnings: `0`.
+   - Report: `eval/github-pages-preview-report.json`.
+5. Screenshot evidence
+   - Result: pass.
+   - Desktop screenshot: `eval/screenshots/github-pages-preview-1280x900.png`.
+   - Interaction screenshot: `eval/screenshots/github-pages-preview-liquid-1280x900.png`.
+   - Mobile screenshot: `eval/screenshots/github-pages-preview-mobile-390x900.png`.
+
+## Notes
+
+Context7 documentation lookup for Vite was blocked by monthly quota, so deployment details were checked against official Vite and GitHub Pages documentation by web fallback.
+
 ## Liquid Label Pass - 2026-06-20
 
 ## Summary
