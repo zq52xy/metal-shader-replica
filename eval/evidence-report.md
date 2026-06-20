@@ -220,20 +220,23 @@ Prepared the repo for a hosted GitHub Pages demo at `https://zq52xy.github.io/me
    - Output bundle: `dist/assets/index-RaQCJ7aU.js`, `206.22 kB`, gzip `63.22 kB`.
    - Output CSS: `dist/assets/index-BU6YAKnt.css`, `5.99 kB`, gzip `1.74 kB`.
    - HTML asset base: `/metal-shader-replica/`.
-3. Pages-path static asset checks at `http://127.0.0.1:4174/metal-shader-replica/`
+3. `npm ci --ignore-scripts`
+   - Result: pass after syncing `package-lock.json`.
+   - Purpose: verifies the GitHub Actions install gate no longer fails on an out-of-sync lockfile.
+4. Pages-path static asset checks at `http://127.0.0.1:4174/metal-shader-replica/`
    - Result: pass.
    - HTML status: `200`.
    - JS asset: `200`, `206224` bytes.
    - CSS asset: `200`, `5992` bytes.
    - Apple PNG asset: `200`, `10421` bytes.
-4. Playwright MCP rendered validation
+5. Playwright MCP rendered validation
    - Result: pass.
    - Desktop canvas count: `4`.
    - Demo buttons visible: `Blue Apple`, `Liquid Chrome`, `Prism Edge`, `Cosmic Glass`.
    - `Liquid Chrome` click updates heading to `Logo Liquid`.
    - Console errors/warnings: `0`.
    - Report: `eval/github-pages-preview-report.json`.
-5. Screenshot evidence
+6. Screenshot evidence
    - Result: pass.
    - Desktop screenshot: `eval/screenshots/github-pages-preview-1280x900.png`.
    - Interaction screenshot: `eval/screenshots/github-pages-preview-liquid-1280x900.png`.
