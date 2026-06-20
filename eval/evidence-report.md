@@ -242,6 +242,23 @@ Prepared the repo for a hosted GitHub Pages demo at `https://zq52xy.github.io/me
    - Desktop screenshot: `eval/screenshots/github-pages-preview-1280x900.png`.
    - Interaction screenshot: `eval/screenshots/github-pages-preview-liquid-1280x900.png`.
    - Mobile screenshot: `eval/screenshots/github-pages-preview-mobile-390x900.png`.
+7. GitHub Actions deployment
+   - Result: pass.
+   - Successful run: `https://github.com/zq52xy/metal-shader-replica/actions/runs/27866309791`.
+   - Head commit: `3b797fd3701eb801fa1962ee7f7b2142ee19a523`.
+   - Pages URL: `https://zq52xy.github.io/metal-shader-replica/`.
+8. Live GitHub Pages validation
+   - Result: pass.
+   - HTML status: `200`.
+   - JS asset: `200`, `206224` bytes.
+   - CSS asset: `200`, `5992` bytes.
+   - Apple PNG asset: `200`, `10421` bytes.
+   - Desktop canvas count: `4`.
+   - Demo buttons visible: `Blue Apple`, `Liquid Chrome`, `Prism Edge`, `Cosmic Glass`.
+   - `Liquid Chrome` click updates active demo to `Liquid Chrome` and heading to `Logo Liquid`.
+   - Console errors/warnings: `0`.
+   - Desktop screenshot: `eval/screenshots/github-pages-live-1280x900.png`.
+   - Interaction screenshot: `eval/screenshots/github-pages-live-liquid-1280x900.png`.
 
 ## Notes
 
