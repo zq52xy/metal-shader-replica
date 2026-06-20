@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "React and WebGL shader playground with gradient, liquid, spectrum, and crystal material modes.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zq52xy/metal-shader-replica.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zq52xy/metal-shader-replica/issues"
+  },
+  "homepage": "https://github.com/zq52xy/metal-shader-replica#readme",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
