@@ -7,7 +7,8 @@
 ## Members
 
 - `main.tsx`: React bootstrap.
-- `App.tsx`: UI state, mode selection, upload replacement, collapsible panel state, and original uniform controls.
+- `App.tsx`: UI state, mode selection, demo preset application, upload replacement, collapsible panel state, and original uniform controls.
+- `demoPresets.ts`: Demo effect metadata and mode-specific uniform overrides.
 - `FramerShaderCanvas.tsx`: WebGL2 canvas lifecycle for captured Framer GLSL shaders.
 - `framerWebgl.ts`: WebGL2 shader compilation, texture binding, and uniform writes.
 - `framerShim.ts`: Minimal `framer` import shim for captured shader config modules.

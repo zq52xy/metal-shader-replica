@@ -17,6 +17,7 @@ The default local app uses a trimmed apple PNG as the source heightmap and rende
 
 - Four WebGL shader modes in a reference-like 2x2 stage.
 - Per-mode parameter controls for color, contour, motion, depth, noise, lighting, and texture settings.
+- Demo effect presets for quickly switching material settings.
 - SVG and PNG replacement through the UI.
 - Collapsible parameter panel with internal scrolling.
 - Responsive desktop and mobile layouts.
@@ -46,6 +47,7 @@ npm run preview
 ```text
 src/
   App.tsx                 UI state, mode switching, uploads, controls
+  demoPresets.ts          Demo effect metadata and uniform overrides
   FramerShaderCanvas.tsx  WebGL canvas lifecycle
   framerWebgl.ts          Shader compilation and uniform binding
   heightmap.ts            SVG/PNG rasterization and heightmap generation

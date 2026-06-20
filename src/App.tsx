@@ -1,9 +1,10 @@
 ﻿// [PROTOCOL]: Update this header on change, then check CLAUDE.md.
 // INPUT: User control changes and optional SVG/PNG replacement files.
-// OUTPUT: Four original Framer shader modes with collapsible live uniform controls.
+// OUTPUT: Four original Framer shader modes with demo presets and collapsible live uniform controls.
 // POS: Own UI state and controls; WebGL2 rendering lives in FramerShaderCanvas.
 
 import { useMemo, useState } from "react";
+import { DEMO_PRESETS, SHOWCASE_MODE_UNIFORMS, type DemoPreset } from "./demoPresets";
 import { FramerShaderCanvas } from "./FramerShaderCanvas";
 import { cloneUniforms, DEFAULT_SOURCE, DEFAULT_UNIFORMS, MODE_SPECS } from "./shaderPresets";
 import type { ShaderMode, UniformMap, UniformValue } from "./types";
@@ -15,6 +16,7 @@ const sampleSvg = `data:image/svg+xml,${encodeURIComponent(`
 
 export default function App() {
   const [selected, setSelected] = useState<ShaderMode>("gradient");
+  const [activeDemoId, setActiveDemoId] = useState<string | null>(null);
   const [panelCollapsed, setPanelCollapsed] = useState(false);
   const [source, setSource] = useState(DEFAULT_SOURCE);
   const [sourceName, setSourceName] = useState("apple-logo-trimmed.png");
@@ -23,6 +25,7 @@ export default function App() {
   const selectedUniforms = uniformsByMode[selected];
 
   const updateUniform = (key: string, value: UniformValue) => {
+    setActiveDemoId(null);
     setUniformsByMode((current) => ({
       ...current,
       [selected]: { ...current[selected], [key]: { ...current[selected][key], value } },
@@ -36,11 +39,13 @@ export default function App() {
   };
 
   const resetMode = () => {
+    setActiveDemoId(null);
     setUniformsByMode((current) => ({ ...current, [selected]: cloneUniforms(selectedSpec.uniforms) }));
   };
 
   const resetAll = () => {
     if (source.startsWith("blob:")) URL.revokeObjectURL(source);
+    setActiveDemoId(null);
     setSource(DEFAULT_SOURCE);
     setSourceName("apple-logo-trimmed.png");
     setUniformsByMode(Object.fromEntries(MODE_SPECS.map((mode) => [mode.id, cloneUniforms(mode.uniforms)])) as Record<ShaderMode, UniformMap>);
@@ -49,6 +54,7 @@ export default function App() {
   const loadFile = (file: File | undefined) => {
     if (!file || !/(image\/png|image\/svg\+xml)/.test(file.type)) return;
     if (source.startsWith("blob:")) URL.revokeObjectURL(source);
+    setActiveDemoId(null);
     const url = URL.createObjectURL(file);
     setSource(url);
     setSourceName(file.name);
@@ -59,8 +65,31 @@ export default function App() {
 
   const loadSampleSvg = () => {
     if (source.startsWith("blob:")) URL.revokeObjectURL(source);
+    setActiveDemoId(null);
     setSource(sampleSvg);
     setSourceName("sample-vector.svg");
+  };
+
+  const applyDemo = (demo: DemoPreset) => {
+    if (source.startsWith("blob:")) URL.revokeObjectURL(source);
+    const applyUniforms = (uniforms: UniformMap, values: Partial<Record<string, UniformValue>>) => {
+      Object.entries(values).forEach(([key, value]) => {
+        if (value === undefined || !uniforms[key]) return;
+        uniforms[key] = { ...uniforms[key], value };
+      });
+    };
+    const nextUniforms = Object.fromEntries(MODE_SPECS.map((mode) => {
+      const uniforms = cloneUniforms(mode.uniforms);
+      if (uniforms.u_image) uniforms.u_image = { ...uniforms.u_image, value: demo.source };
+      applyUniforms(uniforms, SHOWCASE_MODE_UNIFORMS[mode.id]);
+      return [mode.id, uniforms];
+    })) as Record<ShaderMode, UniformMap>;
+    applyUniforms(nextUniforms[demo.mode], demo.uniforms);
+    setActiveDemoId(demo.id);
+    setSelected(demo.mode);
+    setSource(demo.source);
+    setSourceName(demo.sourceName);
+    setUniformsByMode(nextUniforms);
   };
 
   return (
@@ -100,6 +129,23 @@ export default function App() {
                 {mode.shortLabel}
               </button>
             ))}
+          </div>
+
+          <div className="demo-section" aria-label="demo presets">
+            <div className="section-title">Demo effects</div>
+            <div className="demo-grid">
+              {DEMO_PRESETS.map((demo) => (
+                <button
+                  className={demo.id === activeDemoId ? "demo-card is-active" : "demo-card"}
+                  key={demo.id}
+                  onClick={() => applyDemo(demo)}
+                  type="button"
+                >
+                  <span>{demo.title}</span>
+                  <small>{demo.modeLabel}</small>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="panel-section">

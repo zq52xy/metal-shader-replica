@@ -217,4 +217,48 @@ Renamed the visible Glass mode label to Liquid while preserving the internal `gl
    - Visible `Glass` / `Logo Glass` labels: `0`.
    - Canvas count: `4`.
    - Console errors: `0`.
-   - Screenshot: `eval/screenshots/local-liquid-label-1280x900.png`.
+- Screenshot: `eval/screenshots/local-liquid-label-1280x900.png`.
+
+## Demo Effects Pass - 2026-06-20
+
+## Summary
+
+Added four clickable demo effect presets so the app can quickly show distinct tuned material looks using the default apple PNG.
+
+## Changes
+
+- `src/demoPresets.ts`: added demo metadata plus showcase uniform overrides for all four shader modes.
+- `src/App.tsx`: added active demo state and demo preset application.
+- `src/styles.css`: added compact demo preset controls inside the parameter panel.
+- `src/CLAUDE.md` and `README.md`: documented the demo preset module.
+
+## Checks Run
+
+1. `npm run build`
+   - Result: pass.
+   - Output bundle: `dist/assets/index-wVYu-fSn.js`, `206.15 kB`, gzip `63.19 kB`.
+   - Output CSS: `dist/assets/index-BU6YAKnt.css`, `5.99 kB`, gzip `1.74 kB`.
+2. Built-dist Playwright validation using system Chrome
+   - Result: pass.
+   - Demo clicks tested: `Blue Apple`, `Liquid Chrome`, `Prism Edge`, `Cosmic Glass`.
+   - Active tabs after click: `Gradient`, `Liquid`, `Spectrum`, `Crystal`.
+   - Source label after each click: `apple-logo-trimmed.png`.
+   - Canvas count after each click: `4`.
+   - Console errors: `0`.
+   - Report: `eval/demo-effects-report.json`.
+3. Desktop screenshot evidence at `1280x900`
+   - Result: pass.
+   - Screenshots:
+     - `eval/screenshots/local-demo-blue-apple-1280x900-v3.png`
+     - `eval/screenshots/local-demo-liquid-chrome-1280x900-v3.png`
+     - `eval/screenshots/local-demo-prism-edge-1280x900-v3.png`
+     - `eval/screenshots/local-demo-cosmic-glass-1280x900-v3.png`
+4. Mobile layout evidence at `390x900`
+   - Result: pass.
+   - Document width equals viewport width: `390`.
+   - Demo buttons visible: `4`.
+   - Screenshot: `eval/screenshots/local-demo-effects-mobile-390x900-v3.png`.
+
+## Notes
+
+The Browser plugin path was not available in the active tool set, so validation used the regular Playwright fallback with installed system Chrome.
