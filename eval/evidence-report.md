@@ -223,6 +223,7 @@ Prepared the repo for a hosted GitHub Pages demo at `https://zq52xy.github.io/me
 3. `npm ci --ignore-scripts`
    - Result: pass after syncing `package-lock.json`.
    - Purpose: verifies the GitHub Actions install gate no longer fails on an out-of-sync lockfile.
+   - Follow-up: added `@emnapi/core` and `@emnapi/runtime` as explicit dev dependencies after GitHub's Linux runner reported them missing from the lockfile.
 4. Pages-path static asset checks at `http://127.0.0.1:4174/metal-shader-replica/`
    - Result: pass.
    - HTML status: `200`.
