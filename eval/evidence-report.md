@@ -245,7 +245,7 @@ Prepared the repo for a hosted GitHub Pages demo at `https://zq52xy.github.io/me
 
 ## Notes
 
-Context7 documentation lookup for Vite was blocked by monthly quota, so deployment details were checked against official Vite and GitHub Pages documentation by web fallback.
+Context7 documentation lookup for Vite was blocked by monthly quota, so deployment details were checked against official Vite and GitHub Pages documentation by web fallback. The workflow sets `actions/configure-pages` `enablement: true` so the first deployment can enable Pages when the site does not exist yet.
 
 ## Liquid Label Pass - 2026-06-20
 
